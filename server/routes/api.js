@@ -64,15 +64,20 @@ router.post('/decision', async (req, res) => {
     const deduplicatedItems = DeduplicationEngine.processDuplicates(aggregationResult.items);
 
     // Step 5: Rank options based on user requirements & multi-criteria utility
-    const rankedOptions = RankingEngine.rankOptions(deduplicatedItems, userRequirements);
+    const rankResult = RankingEngine.rankOptions(deduplicatedItems, userRequirements);
+    const rankedOptions = Array.isArray(rankResult) ? rankResult : (rankResult.items || []);
+    const hasExactMatch = rankResult.hasExactMatch !== undefined ? rankResult.hasExactMatch : true;
+    const exactMatchCount = rankResult.exactMatchCount !== undefined ? rankResult.exactMatchCount : rankedOptions.length;
 
     // Step 6: Explain recommendation (grounded in data)
     const recommended = rankedOptions.length > 0 ? rankedOptions[0] : null;
-    const explanation = ExplanationEngine.generateExplanation(recommended, rankedOptions, userRequirements);
+    const explanation = ExplanationEngine.generateExplanation(recommended, rankedOptions, userRequirements, hasExactMatch);
 
     res.json({
       success: true,
       query,
+      hasExactMatch,
+      exactMatchCount,
       userRequirements,
       recommendation: recommended ? {
         item: recommended,

@@ -62,14 +62,39 @@ class RankingEngine {
     }
 
     for (const item of candidateItems) {
-      // 1. Dietary Constraint Hard Filter
-      if (req.dietary_preference === 'VEG' && !item.isVeg) {
-        // Exclude completely if user strictly wants veg
+      // 1. Dietary Constraint Filter
+      const dietaryMismatch = (req.dietary_preference === 'VEG' && !item.isVeg) ||
+        (req.dietary_preference === 'NON_VEG' && item.isVeg && req.food_item && /chicken|mutton|meat|fish/i.test(req.raw_query));
+
+      if (dietaryMismatch) {
+        // If there are other candidates, exclude strict dietary mismatches
         continue;
       }
-      if (req.dietary_preference === 'NON_VEG' && item.isVeg && req.food_item && /chicken|mutton|meat|fish/i.test(req.raw_query)) {
-        continue;
+
+      // Check Constraint Violations
+      const unmetConstraints = [];
+      if (req.max_budget && item.price > req.max_budget) {
+        unmetConstraints.push({
+          type: 'budget',
+          message: `Exceeds budget by ₹${item.price - req.max_budget} (₹${item.price} vs ₹${req.max_budget})`
+        });
       }
+
+      if (req.max_delivery_time && item.deliveryTimeMinutes > req.max_delivery_time) {
+        unmetConstraints.push({
+          type: 'delivery_time',
+          message: `Takes ${item.deliveryTimeMinutes} mins (exceeds ${req.max_delivery_time}m preference)`
+        });
+      }
+
+      if (req.min_rating && item.rating < req.min_rating) {
+        unmetConstraints.push({
+          type: 'rating',
+          message: `Rating is ${item.rating}★ (below ${req.min_rating}★ target)`
+        });
+      }
+
+      const isExactMatch = unmetConstraints.length === 0;
 
       // 2. Intent & Food Relevance Match Score (0 - 100)
       let matchScore = 70;
@@ -154,6 +179,8 @@ class RankingEngine {
 
       scoredItems.push({
         ...item,
+        isExactMatch,
+        unmetConstraints,
         compositeScore: Number(totalScore.toFixed(1)),
         scoreBreakdown: {
           qualityScore: Math.round(qualityScore),
@@ -170,8 +197,19 @@ class RankingEngine {
       });
     }
 
-    // Sort descending by composite score
-    return scoredItems.sort((a, b) => b.compositeScore - a.compositeScore);
+    // Sort descending by composite score, prioritizing exact constraint matches
+    const sorted = scoredItems.sort((a, b) => {
+      if (a.isExactMatch && !b.isExactMatch) return -1;
+      if (!a.isExactMatch && b.isExactMatch) return 1;
+      return b.compositeScore - a.compositeScore;
+    });
+
+    sorted.hasExactMatch = sorted.some(i => i.isExactMatch);
+    sorted.exactMatchCount = sorted.filter(i => i.isExactMatch).length;
+    sorted.totalCount = sorted.length;
+    sorted.items = sorted;
+
+    return sorted;
   }
 }
 

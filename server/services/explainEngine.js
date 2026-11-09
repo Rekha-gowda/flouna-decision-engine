@@ -15,9 +15,10 @@ class ExplanationEngine {
   /**
    * Generates a grounded explanation for the top-ranked recommendation
    */
-  static generateExplanation(recommendedItem, allRankedItems, userRequirements) {
+  static generateExplanation(recommendedItem, allRankedItems, userRequirements, hasExactMatch = true) {
     if (!recommendedItem) {
       return {
+        isExactMatch: false,
         summary: "No restaurants matched your exact criteria. Please consider broadening your budget or delivery radius.",
         reasons: [],
         contrastiveInsight: null
@@ -27,6 +28,7 @@ class ExplanationEngine {
     const reasons = [];
     const r = recommendedItem;
     const req = userRequirements || {};
+    const isExact = hasExactMatch && r.isExactMatch !== false;
 
     // 1. Quality & Rating reason
     if (r.rating >= 4.5) {
@@ -52,7 +54,7 @@ class ExplanationEngine {
         const savings = req.max_budget - r.price;
         reasons.push(`Priced at ₹${r.price}${savings > 0 ? ` (saving you ₹${savings} from your ₹${req.max_budget} budget)` : ''}`);
       } else {
-        reasons.push(`Priced at ₹${r.price}`);
+        reasons.push(`Priced at ₹${r.price} (exceeds ₹${req.max_budget} budget)`);
       }
     } else {
       reasons.push(`Competitive price of ₹${r.price}`);
@@ -63,7 +65,7 @@ class ExplanationEngine {
       reasons.push(`Includes active deal: "${r.specialOffer || r.discountText}" via ${r.provider}`);
     }
 
-    // 5. Contrastive Insight (e.g. why this won over the cheapest option or runner up)
+    // 5. Contrastive Insight
     let contrastiveInsight = null;
     const cheaperOptions = allRankedItems.filter(item => item.id !== r.id && item.price < r.price);
     
@@ -82,9 +84,19 @@ class ExplanationEngine {
     }
 
     // Grounded concise summary
-    const summary = `We recommend "${r.dishName}" from ${r.restaurantName} on ${r.provider} (${r.rating}★, ₹${r.price}, ~${r.deliveryTimeMinutes} mins). It provides the best overall match for your preferences, scoring ${r.compositeScore}/100.`;
+    let summary = '';
+    if (!isExact) {
+      let reasonDetail = '';
+      if (req.max_budget && r.price > req.max_budget) {
+        reasonDetail = `under ₹${req.max_budget}`;
+      }
+      summary = `No exact match found${reasonDetail ? ` ${reasonDetail}` : ''}. But here are similar top-rated matches: We recommend "${r.dishName}" from ${r.restaurantName} (₹${r.price}, ${r.rating}★).`;
+    } else {
+      summary = `We recommend "${r.dishName}" from ${r.restaurantName} on ${r.provider} (${r.rating}★, ₹${r.price}, ~${r.deliveryTimeMinutes} mins). It provides the best overall match for your preferences, scoring ${r.compositeScore}/100.`;
+    }
 
     return {
+      isExactMatch: isExact,
       summary,
       reasons,
       contrastiveInsight
