@@ -1,0 +1,65 @@
+[
+  {
+    "id": "off-1",
+    "code": "FLOUNA50",
+    "title": "50% FLAT OFF",
+    "description": "Get 50% discount up to ₹100 on all orders across Bangalore",
+    "discountType": "percentage",
+    "discountValue": 50,
+    "maxDiscount": 100,
+    "minOrder": 199,
+    "badge": "Trending",
+    "tagColor": "from-orange-500 to-amber-500",
+    "validTill": "Limited Time"
+  },
+  {
+    "id": "off-2",
+    "code": "FREESHIP",
+    "title": "FREE INSTANT DELIVERY",
+    "description": "Zero delivery fee on all orders arriving within 30 minutes",
+    "discountType": "free_delivery",
+    "discountValue": 35,
+    "minOrder": 149,
+    "badge": "Popular",
+    "tagColor": "from-blue-500 to-cyan-500",
+    "validTill": "All Day"
+  },
+  {
+    "id": "off-3",
+    "code": "ZESTY20",
+    "title": "20% OFF BIRYANI",
+    "description": "Special discount on Meghana Foods & Behrouz Biryani orders",
+    "discountType": "percentage",
+    "discountValue": 20,
+    "maxDiscount": 60,
+    "minOrder": 250,
+    "badge": "Biryani Special",
+    "tagColor": "from-emerald-500 to-teal-500",
+    "validTill": "Dinner Special"
+  },
+  {
+    "id": "off-4",
+    "code": "PIZZA40",
+    "title": "₹40 FLAT CASH OFF",
+    "description": "Instant ₹40 savings on Toscano Pizzeria & Ovenstory orders",
+    "discountType": "flat",
+    "discountValue": 40,
+    "minOrder": 299,
+    "badge": "Pizza Fest",
+    "tagColor": "from-purple-500 to-rose-500",
+    "validTill": "This Weekend"
+  },
+  {
+    "id": "off-5",
+    "code": "ONDC10",
+    "title": "10% ONDC CASHBACK",
+    "description": "Direct open network savings on UrbanKitchen cloud kitchens",
+    "discountType": "cashback",
+    "discountValue": 10,
+    "maxDiscount": 50,
+    "minOrder": 200,
+    "badge": "Open Network",
+    "tagColor": "from-amber-500 to-yellow-500",
+    "validTill": "ONDC Exclusive"
+  }
+]

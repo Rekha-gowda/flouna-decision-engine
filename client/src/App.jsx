@@ -5,7 +5,13 @@ import RecommendationHero from './components/RecommendationHero';
 import ComparisonTable from './components/ComparisonTable';
 import ScenarioPicker from './components/ScenarioPicker';
 import SimulationControls from './components/SimulationControls';
-import { Sparkles, SlidersHorizontal, X, AlertCircle, ShoppingBag, Check } from 'lucide-react';
+import AuthModal from './components/AuthModal';
+import CartModal from './components/CartModal';
+import OrdersModal from './components/OrdersModal';
+import OffersModal from './components/OffersModal';
+import RestaurantsModal from './components/RestaurantsModal';
+import AdminUsersModal from './components/AdminUsersModal';
+import { SlidersHorizontal, X, AlertCircle, Check, ShoppingBag } from 'lucide-react';
 
 export default function App() {
   const [query, setQuery] = useState('can i find pizza under 100 rupees');
@@ -13,12 +19,38 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [decisionData, setDecisionData] = useState(null);
-  const [cartCount, setCartCount] = useState(0);
+
+  // User state
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('flouna_user');
+      return saved ? JSON.parse(saved) : { id: 'usr-admin-1', name: 'Rekha', email: 'rekha@flouna.com', role: 'admin' };
+    } catch (e) {
+      return { id: 'usr-admin-1', name: 'Rekha', email: 'rekha@flouna.com', role: 'admin' };
+    }
+  });
+
+  // Cart state
+  const [cartItems, setCartItems] = useState([]);
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Hidden / Discreet Reviewer Test Console Drawer
+  // Modals state
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showCartModal, setShowCartModal] = useState(false);
+  const [showOrdersModal, setShowOrdersModal] = useState(false);
+  const [showOffersModal, setShowOffersModal] = useState(false);
+  const [showRestaurantsModal, setShowRestaurantsModal] = useState(false);
+  const [showAdminUsersModal, setShowAdminUsersModal] = useState(false);
+
+  // Hidden Reviewer Test Console
   const [showDevConsole, setShowDevConsole] = useState(false);
   const [activeScenarioId, setActiveScenarioId] = useState(null);
+
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
 
   const runDecision = async (searchQuery, simOpts = simulationOptions) => {
     setIsLoading(true);
@@ -48,15 +80,53 @@ export default function App() {
     }
   };
 
-  // Initial load
   useEffect(() => {
     runDecision(query, {});
   }, []);
 
   const handleAddToCart = (item) => {
-    setCartCount(prev => prev + 1);
-    setToastMessage(`Added "${item.dishName}" to your cart!`);
-    setTimeout(() => setToastMessage(null), 3000);
+    setCartItems(prev => {
+      const existing = prev.find(i => i.id === item.id);
+      if (existing) {
+        return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+      }
+      return [...prev, { ...item, quantity: 1 }];
+    });
+    showToast(`Added "${item.dishName || item.name}" to cart! 🛒`);
+  };
+
+  const handleUpdateQuantity = (itemId, newQty) => {
+    if (newQty <= 0) {
+      setCartItems(prev => prev.filter(i => i.id !== itemId));
+    } else {
+      setCartItems(prev => prev.map(i => i.id === itemId ? { ...i, quantity: newQty } : i));
+    }
+  };
+
+  const handleRemoveItem = (itemId) => {
+    setCartItems(prev => prev.filter(i => i.id !== itemId));
+  };
+
+  const handleClearCart = () => {
+    setCartItems([]);
+  };
+
+  const handleOrderPlaced = (newOrder) => {
+    showToast(`🎉 Order ${newOrder.id} placed! Kitchen is preparing your food.`);
+    setShowOrdersModal(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('flouna_user');
+    setCurrentUser(null);
+    showToast('Signed out successfully.');
+  };
+
+  const handleApplyCouponFromOffers = (code) => {
+    setAppliedCoupon(code);
+    showToast(`Coupon "${code}" applied to your cart!`);
+    setShowOffersModal(false);
+    setShowCartModal(true);
   };
 
   const handleSelectScenario = (scenario) => {
@@ -67,15 +137,27 @@ export default function App() {
     setShowDevConsole(false);
   };
 
+  const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
       {/* Real-World Header */}
-      <Navbar cartCount={cartCount} />
+      <Navbar
+        cartCount={totalCartCount}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+        onOpenAuth={() => setShowAuthModal(true)}
+        onOpenCart={() => setShowCartModal(true)}
+        onOpenOrders={() => setShowOrdersModal(true)}
+        onOpenOffers={() => setShowOffersModal(true)}
+        onOpenRestaurants={() => setShowRestaurantsModal(true)}
+        onOpenAdminUsers={() => setShowAdminUsersModal(true)}
+      />
 
       {/* Floating Notification Toast */}
       {toastMessage && (
-        <div className="fixed top-20 right-6 z-50 bg-emerald-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-2 animate-bounce">
-          <Check className="w-4 h-4" />
+        <div className="fixed top-20 right-6 z-50 bg-slate-900 border border-emerald-500/40 text-emerald-300 font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-2 animate-in fade-in slide-in-from-top-3">
+          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -124,6 +206,67 @@ export default function App() {
         )}
       </main>
 
+      {/* Floating Cart Pill if Cart has items */}
+      {totalCartCount > 0 && !showCartModal && (
+        <div className="fixed bottom-6 left-6 z-40">
+          <button
+            onClick={() => setShowCartModal(true)}
+            className="px-4 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-black text-xs sm:text-sm shadow-2xl shadow-orange-500/40 flex items-center space-x-2.5 transition-all cursor-pointer animate-pulse"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>View Cart ({totalCartCount} items)</span>
+          </button>
+        </div>
+      )}
+
+      {/* Modals */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onLoginSuccess={(user) => {
+          setCurrentUser(user);
+          showToast(`Welcome, ${user.name}!`);
+        }}
+      />
+
+      <CartModal
+        isOpen={showCartModal}
+        onClose={() => setShowCartModal(false)}
+        cartItems={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onClearCart={handleClearCart}
+        currentUser={currentUser}
+        onOrderPlaced={handleOrderPlaced}
+        appliedCoupon={appliedCoupon}
+        setAppliedCoupon={setAppliedCoupon}
+      />
+
+      <OrdersModal
+        isOpen={showOrdersModal}
+        onClose={() => setShowOrdersModal(false)}
+        currentUser={currentUser}
+      />
+
+      <OffersModal
+        isOpen={showOffersModal}
+        onClose={() => setShowOffersModal(false)}
+        onApplyCoupon={handleApplyCouponFromOffers}
+      />
+
+      <RestaurantsModal
+        isOpen={showRestaurantsModal}
+        onClose={() => setShowRestaurantsModal(false)}
+        onAddToCart={(item) => {
+          handleAddToCart(item);
+        }}
+      />
+
+      <AdminUsersModal
+        isOpen={showAdminUsersModal}
+        onClose={() => setShowAdminUsersModal(false)}
+      />
+
       {/* Real-World Footer */}
       <footer className="border-t border-slate-800/80 bg-slate-950/80 py-10 px-4 text-xs text-slate-400">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -158,14 +301,24 @@ export default function App() {
 
           <div>
             <h4 className="font-bold text-slate-200 mb-3">Platform Administration</h4>
-            <p className="text-slate-400 mb-2">System Admin: <strong className="text-slate-200">Rekha</strong></p>
+            <p className="text-slate-400 mb-2">
+              Active Session: <strong className="text-slate-200">{currentUser ? currentUser.name : 'Guest'}</strong> ({currentUser ? currentUser.role : 'Visitor'})
+            </p>
+            {currentUser && currentUser.role === 'admin' && (
+              <button
+                onClick={() => setShowAdminUsersModal(true)}
+                className="text-orange-400 hover:text-orange-300 font-semibold underline text-xs cursor-pointer block mb-1"
+              >
+                View Registered User Database
+              </button>
+            )}
             <p className="text-[11px] text-emerald-400">✓ All delivery network gateways active</p>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400">
           <p>© 2026 FLOUNA Technologies Pvt. Ltd. All rights reserved.</p>
-          <p>Managed by Admin Rekha</p>
+          <p>Admin Portal: Rekha</p>
         </div>
       </footer>
 
@@ -187,7 +340,7 @@ export default function App() {
           <div className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-3xl bg-slate-900 border border-slate-700 p-6 sm:p-8 shadow-2xl">
             <button
               onClick={() => setShowDevConsole(false)}
-              className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white"
+              className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

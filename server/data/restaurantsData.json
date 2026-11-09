@@ -1,0 +1,105 @@
+[
+  {
+    "id": "res-1",
+    "name": "Meghana Foods",
+    "cuisine": ["Biryani", "Andhra", "South Indian"],
+    "rating": 4.7,
+    "reviewCount": 12800,
+    "etaMinutes": 26,
+    "location": "Koramangala 5th Block",
+    "priceForTwo": 550,
+    "imageEmoji": "🍛",
+    "isVeg": false,
+    "activeOffer": "20% OFF with ZESTY20",
+    "menu": [
+      { "id": "m-101", "name": "Special Paneer Biryani", "price": 280, "isVeg": true, "rating": 4.8, "description": "Aromatic basmati rice layered with spiced paneer cubes and fried onions." },
+      { "id": "m-102", "name": "Meghana Chicken Biryani", "price": 320, "isVeg": false, "rating": 4.7, "description": "Signature Andhra style spicy chicken biryani cooked to perfection." },
+      { "id": "m-103", "name": "Andhra Chilli Paneer", "price": 240, "isVeg": true, "rating": 4.6, "description": "Crispy paneer tossed in spicy green chilli paste and curry leaves." }
+    ]
+  },
+  {
+    "id": "res-2",
+    "name": "Behrouz Biryani",
+    "cuisine": ["Royal Biryani", "Mughlai", "Kebabs"],
+    "rating": 4.5,
+    "reviewCount": 6400,
+    "etaMinutes": 32,
+    "location": "Indiranagar",
+    "priceForTwo": 650,
+    "imageEmoji": "👑",
+    "isVeg": false,
+    "activeOffer": "FLAT ₹50 OFF",
+    "menu": [
+      { "id": "m-201", "name": "Subz-e-Biryani (Veg)", "price": 330, "isVeg": true, "rating": 4.5, "description": "Royal combination of fresh vegetables and golden basmati flavored with saffron." },
+      { "id": "m-202", "name": "Dum Gosht Biryani", "price": 490, "isVeg": false, "rating": 4.6, "description": "Tender lamb marinated in royal spices and slow-cooked in sealed handi." }
+    ]
+  },
+  {
+    "id": "res-3",
+    "name": "Toscano Artisanal Pizzeria",
+    "cuisine": ["Italian", "Wood-fired Pizza", "Pasta"],
+    "rating": 4.6,
+    "reviewCount": 3400,
+    "etaMinutes": 30,
+    "location": "Koramangala",
+    "priceForTwo": 700,
+    "imageEmoji": "🍕",
+    "isVeg": false,
+    "activeOffer": "₹40 OFF with PIZZA40",
+    "menu": [
+      { "id": "m-301", "name": "Spicy Peri Peri Margherita Pizza", "price": 395, "isVeg": true, "rating": 4.6, "description": "Hand-stretched sourdough, San Marzano tomato sauce, fresh mozzarella, peri-peri drizzle." },
+      { "id": "m-302", "name": "Classic Quattro Formaggi Pizza", "price": 440, "isVeg": true, "rating": 4.7, "description": "Four artisan cheeses: Mozzarella, Gorgonzola, Parmesan, and Ricotta." }
+    ]
+  },
+  {
+    "id": "res-4",
+    "name": "Biryani Blues Express",
+    "cuisine": ["Hyderabadi Biryani", "Mughlai"],
+    "rating": 4.8,
+    "reviewCount": 5420,
+    "etaMinutes": 20,
+    "location": "Koramangala 4th Block",
+    "priceForTwo": 480,
+    "imageEmoji": "⚡",
+    "isVeg": false,
+    "activeOffer": "Superfast 20-min arrival",
+    "menu": [
+      { "id": "m-401", "name": "Hyderabadi Dum Chicken Biryani", "price": 290, "isVeg": false, "rating": 4.8, "description": "Authentic kacchi dum biryani served with mirchi ka salan and burani raita." },
+      { "id": "m-402", "name": "Paneer 65 Platter", "price": 210, "isVeg": true, "rating": 4.5, "description": "Spicy South Indian deep fried paneer with curry leaves and ginger." }
+    ]
+  },
+  {
+    "id": "res-5",
+    "name": "Grandma's North Indian Rasoi",
+    "cuisine": ["North Indian", "Homestyle Thali", "Curries"],
+    "rating": 4.6,
+    "reviewCount": 1340,
+    "etaMinutes": 25,
+    "location": "HSR Layout",
+    "priceForTwo": 350,
+    "imageEmoji": "🍲",
+    "isVeg": true,
+    "activeOffer": "10% ONDC Cashback",
+    "menu": [
+      { "id": "m-501", "name": "Special North Indian Thali", "price": 220, "isVeg": true, "rating": 4.6, "description": "Complete homestyle meal: Paneer butter masala, Dal makhani, 4 Phulkas, Jeera rice & Gulab Jamun." },
+      { "id": "m-502", "name": "Dal Makhani with Garlic Naan", "price": 180, "isVeg": true, "rating": 4.7, "description": "Slow simmered black lentils cooked overnight with butter and cream." }
+    ]
+  },
+  {
+    "id": "res-6",
+    "name": "Truffles Burger Joint",
+    "cuisine": ["Gourmet Burgers", "American", "Fast Food"],
+    "rating": 4.7,
+    "reviewCount": 8900,
+    "etaMinutes": 28,
+    "location": "St. Marks Road",
+    "priceForTwo": 420,
+    "imageEmoji": "🍔",
+    "isVeg": false,
+    "activeOffer": "Free Peri Peri Fries",
+    "menu": [
+      { "id": "m-601", "name": "All American Cheese Burger", "price": 190, "isVeg": false, "rating": 4.7, "description": "Juicy grilled patty topped with melted cheddar, lettuce, gherkins and secret sauce." },
+      { "id": "m-602", "name": "Crispy Veggie Cheese Burger", "price": 160, "isVeg": true, "rating": 4.5, "description": "Crispy spiced veggie patty, double cheese slice, chipotle mayo." }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ORD-89412",
+    "userEmail": "rekha@flouna.com",
+    "userName": "Rekha",
+    "items": [
+      {
+        "id": "zb_zb-101_zb-m-1",
+        "dishName": "Paneer Biryani Special",
+        "restaurantName": "Meghana Foods",
+        "price": 280,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 280,
+    "discount": 50,
+    "deliveryFee": 0,
+    "total": 230,
+    "deliveryAddress": "Koramangala 5th Block, Bengaluru",
+    "status": "Delivered",
+    "createdAt": "2026-11-09T14:20:00.000Z"
+  }
+]
