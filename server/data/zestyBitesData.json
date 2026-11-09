@@ -1,0 +1,184 @@
+[
+  {
+    "res_id": "zb-101",
+    "res_info": {
+      "name": "Meghana Foods",
+      "locality": "Koramangala",
+      "city": "Bengaluru",
+      "veg_only": false,
+      "cuisines": ["Biryani", "Andhra", "South Indian"],
+      "rating": {
+        "aggregate_rating": 4.7,
+        "votes": 12800
+      }
+    },
+    "menu": [
+      {
+        "item_id": "zb-m-1",
+        "dish_name": "Paneer Biryani Special",
+        "category": "Biryani",
+        "price": 280,
+        "is_veg": true,
+        "item_rating": 4.8
+      },
+      {
+        "item_id": "zb-m-2",
+        "dish_name": "Special Chicken Biryani",
+        "category": "Biryani",
+        "price": 320,
+        "is_veg": false,
+        "item_rating": 4.7
+      }
+    ],
+    "delivery": {
+      "eta_mins": 26,
+      "distance_km": 2.4,
+      "fee": 25
+    },
+    "promotions": {
+      "discount_text": "20% OFF up to ₹50",
+      "discount_percent": 20,
+      "min_order": 199
+    }
+  },
+  {
+    "res_id": "zb-102",
+    "res_info": {
+      "name": "Behrouz Biryani",
+      "locality": "Indiranagar",
+      "city": "Bengaluru",
+      "veg_only": false,
+      "cuisines": ["Mughlai", "Biryani", "Royal"],
+      "rating": {
+        "aggregate_rating": 4.5,
+        "votes": 6400
+      }
+    },
+    "menu": [
+      {
+        "item_id": "zb-m-3",
+        "dish_name": "Subz-e-Biryani (Veg)",
+        "category": "Biryani",
+        "price": 380,
+        "is_veg": true,
+        "item_rating": 4.5
+      },
+      {
+        "item_id": "zb-m-4",
+        "dish_name": "Dum Gosht Biryani",
+        "category": "Biryani",
+        "price": 490,
+        "is_veg": false,
+        "item_rating": 4.6
+      }
+    ],
+    "delivery": {
+      "eta_mins": 35,
+      "distance_km": 4.1,
+      "fee": 30
+    },
+    "promotions": {
+      "discount_text": "FLAT ₹50 OFF",
+      "discount_amount": 50,
+      "min_order": 299
+    }
+  },
+  {
+    "res_id": "zb-103",
+    "res_info": {
+      "name": "Street Corner Fast Food",
+      "locality": "BTM Layout",
+      "city": "Bengaluru",
+      "veg_only": false,
+      "cuisines": ["Fast Food", "Biryani", "Street Food"],
+      "rating": {
+        "aggregate_rating": 3.4,
+        "votes": 120
+      }
+    },
+    "menu": [
+      {
+        "item_id": "zb-m-5",
+        "dish_name": "Budget Hyderabadi Chicken Biryani",
+        "category": "Biryani",
+        "price": 140,
+        "is_veg": false,
+        "item_rating": 3.3
+      }
+    ],
+    "delivery": {
+      "eta_mins": 45,
+      "distance_km": 5.2,
+      "fee": 40
+    },
+    "promotions": null
+  },
+  {
+    "res_id": "zb-104",
+    "res_info": {
+      "name": "Toscano Artisanal Pizzeria",
+      "locality": "Koramangala",
+      "city": "Bengaluru",
+      "veg_only": false,
+      "cuisines": ["Italian", "Pizza", "Pastas"],
+      "rating": {
+        "aggregate_rating": 4.6,
+        "votes": 3400
+      }
+    },
+    "menu": [
+      {
+        "item_id": "zb-m-6",
+        "dish_name": "Spicy Peri Peri Margherita Pizza",
+        "category": "Pizza",
+        "price": 395,
+        "is_veg": true,
+        "item_rating": 4.6
+      }
+    ],
+    "delivery": {
+      "eta_mins": 32,
+      "distance_km": 2.9,
+      "fee": 30
+    },
+    "promotions": {
+      "discount_text": "15% OFF",
+      "discount_percent": 15,
+      "min_order": 300
+    }
+  },
+  {
+    "res_id": "zb-105",
+    "res_info": {
+      "name": "Punjab Grill & Curry House",
+      "locality": "HSR Layout",
+      "city": "Bengaluru",
+      "veg_only": false,
+      "cuisines": ["North Indian", "Thali", "Punjabi"],
+      "rating": {
+        "aggregate_rating": 4.4,
+        "votes": 2100
+      }
+    },
+    "menu": [
+      {
+        "item_id": "zb-m-7",
+        "dish_name": "Deluxe North Indian Veg Thali",
+        "category": "Thali",
+        "price": 240,
+        "is_veg": true,
+        "item_rating": 4.5
+      }
+    ],
+    "delivery": {
+      "eta_mins": 25,
+      "distance_km": 1.8,
+      "fee": 20
+    },
+    "promotions": {
+      "discount_text": "₹30 OFF",
+      "discount_amount": 30,
+      "min_order": 200
+    }
+  }
+]

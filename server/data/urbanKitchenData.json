@@ -1,0 +1,86 @@
+[
+  {
+    "listing_id": "uk-ondc-501",
+    "vendor_title": "Behrouz Biryani - Royal Kitchen",
+    "area": "Indiranagar",
+    "city": "Bengaluru",
+    "item_details": {
+      "dish": "Subz-e-Biryani (Veg)",
+      "cuisine_tags": ["Mughlai", "Biryani"],
+      "is_pure_vegetarian": true
+    },
+    "pricing": {
+      "amount": 330,
+      "taxes_included": true
+    },
+    "prep_and_delivery_time": 30,
+    "user_rating": {
+      "stars": 4.5,
+      "count": 4800
+    },
+    "promotional_deal": "Free Mint Raita with every order"
+  },
+  {
+    "listing_id": "uk-ondc-502",
+    "vendor_title": "Grandma's North Indian Rasoi",
+    "area": "HSR Sector 2",
+    "city": "Bengaluru",
+    "item_details": {
+      "dish": "Special North Indian Thali (4 Roti + Paneer + Dal + Rice)",
+      "cuisine_tags": ["North Indian", "Thali", "Homestyle"],
+      "is_pure_vegetarian": true
+    },
+    "pricing": {
+      "amount": 220,
+      "taxes_included": true
+    },
+    "prep_and_delivery_time": 25,
+    "user_rating": {
+      "stars": 4.6,
+      "count": 1340
+    },
+    "promotional_deal": "10% ONDC Network Cashback"
+  },
+  {
+    "listing_id": "uk-ondc-503",
+    "vendor_title": "Mojo Pizza - 2X Toppings",
+    "area": "Koramangala 4th Block",
+    "city": "Bengaluru",
+    "item_details": {
+      "dish": "Firecracker Spicy Paneer Pizza",
+      "cuisine_tags": ["Pizza", "Italian", "Fast Food"],
+      "is_pure_vegetarian": true
+    },
+    "pricing": {
+      "amount": 380,
+      "taxes_included": true
+    },
+    "prep_and_delivery_time": 35,
+    "user_rating": {
+      "stars": 4.5,
+      "count": 2700
+    },
+    "promotional_deal": "₹40 Flat Off on first order"
+  },
+  {
+    "listing_id": "uk-ondc-504",
+    "vendor_title": "Paradise Biryani Cloud",
+    "area": "Indiranagar",
+    "city": "Bengaluru",
+    "item_details": {
+      "dish": "Nizami Veg Biryani Platter",
+      "cuisine_tags": ["Biryani", "Hyderabadi"],
+      "is_pure_vegetarian": true
+    },
+    "pricing": {
+      "amount": 270,
+      "taxes_included": true
+    },
+    "prep_and_delivery_time": 28,
+    "user_rating": {
+      "stars": 4.4,
+      "count": 3900
+    },
+    "promotional_deal": "Free Gulab Jamun"
+  }
+]

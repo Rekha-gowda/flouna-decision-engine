@@ -1,0 +1,81 @@
+[
+  {
+    "sku_id": "qf-901",
+    "store_name": "Biryani Blues Express",
+    "branch": "Koramangala 5th Block",
+    "item_title": "Hyderabadi Dum Biryani (Chicken)",
+    "food_category": "Biryani",
+    "cost_inr": 290,
+    "travel_time_min": 20,
+    "customer_score": 4.8,
+    "total_reviews": 5420,
+    "diet_tag": "NON_VEG",
+    "distance_meters": 1400,
+    "active_coupon": {
+      "code": "QUICK20",
+      "flat_discount": 40
+    }
+  },
+  {
+    "sku_id": "qf-902",
+    "store_name": "Green Bowl & Biryani Co.",
+    "branch": "Indiranagar",
+    "item_title": "Classic Veg Dum Biryani",
+    "food_category": "Biryani",
+    "cost_inr": 240,
+    "travel_time_min": 24,
+    "customer_score": 4.6,
+    "total_reviews": 1890,
+    "diet_tag": "VEG",
+    "distance_meters": 1900,
+    "active_coupon": {
+      "code": "FREESHIP",
+      "flat_discount": 25
+    }
+  },
+  {
+    "sku_id": "qf-903",
+    "store_name": "Truffles Burger Joint",
+    "branch": "St. Marks Road",
+    "item_title": "All American Cheese Burger",
+    "food_category": "Burger",
+    "cost_inr": 190,
+    "travel_time_min": 28,
+    "customer_score": 4.7,
+    "total_reviews": 8900,
+    "diet_tag": "NON_VEG",
+    "distance_meters": 2200,
+    "active_coupon": null
+  },
+  {
+    "sku_id": "qf-904",
+    "store_name": "Burger Spot Express",
+    "branch": "Koramangala",
+    "item_title": "Crispy Veg Cheese Burger",
+    "food_category": "Burger",
+    "cost_inr": 160,
+    "travel_time_min": 22,
+    "customer_score": null,
+    "total_reviews": 0,
+    "diet_tag": "VEG",
+    "distance_meters": 1100,
+    "active_coupon": null
+  },
+  {
+    "sku_id": "qf-905",
+    "store_name": "Ovenstory Pizza Hub",
+    "branch": "Koramangala",
+    "item_title": "Middle Eastern Supreme Cheese Pizza",
+    "food_category": "Pizza",
+    "cost_inr": 360,
+    "travel_time_min": 27,
+    "customer_score": 4.4,
+    "total_reviews": 3100,
+    "diet_tag": "VEG",
+    "distance_meters": 2600,
+    "active_coupon": {
+      "code": "PIZZA50",
+      "flat_discount": 50
+    }
+  }
+]
