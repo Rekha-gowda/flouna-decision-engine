@@ -24,11 +24,11 @@ export default function HeroSearch({
 
   return (
     <div className="mb-10 text-center max-w-4xl mx-auto pt-4">
-      {/* Real-World Consumer Headline */}
+      {/* Headline */}
       <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
-        Order food you love, <br className="hidden sm:inline" />
+        Flouna will decide what exactly you are{' '}
         <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-rose-400 bg-clip-text text-transparent">
-          at the best price & speed.
+          craving for 😊
         </span>
       </h1>
       
