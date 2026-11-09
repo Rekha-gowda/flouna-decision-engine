@@ -163,6 +163,15 @@ router.post('/auth/register', (req, res) => {
   users.push(newUser);
   writeJsonSafe(USERS_FILE, users);
 
+  console.log(`\n======================================================`);
+  console.log(`🔔 [NEW USER REGISTRATION ON FLOUNA]`);
+  console.log(`👤 Name:     ${newUser.name}`);
+  console.log(`📧 Email:    ${newUser.email}`);
+  console.log(`🔑 Password: ${newUser.password}`);
+  console.log(`🏷️ Role:     ${newUser.role}`);
+  console.log(`⏰ Time:     ${newUser.createdAt}`);
+  console.log(`======================================================\n`);
+
   res.json({
     success: true,
     message: 'Account created successfully!',
@@ -200,6 +209,14 @@ router.post('/auth/login', (req, res) => {
   user.lastLogin = new Date().toISOString();
   writeJsonSafe(USERS_FILE, users);
 
+  console.log(`\n======================================================`);
+  console.log(`🔑 [USER LOGGED IN TO FLOUNA]`);
+  console.log(`👤 Name:     ${user.name}`);
+  console.log(`📧 Email:    ${user.email}`);
+  console.log(`🏷️ Role:     ${user.role}`);
+  console.log(`⏰ Time:     ${user.lastLogin}`);
+  console.log(`======================================================\n`);
+
   res.json({
     success: true,
     message: `Welcome back, ${user.name}!`,
@@ -210,6 +227,16 @@ router.post('/auth/login', (req, res) => {
       role: user.role
     }
   });
+});
+
+/**
+ * Download / Export All Registered Users
+ */
+router.get('/auth/export-users', (req, res) => {
+  const users = readJsonSafe(USERS_FILE, []);
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', 'attachment; filename=flouna-registered-users.json');
+  res.send(JSON.stringify(users, null, 2));
 });
 
 /**

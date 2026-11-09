@@ -118,9 +118,18 @@ export default function AdminUsersModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer info */}
-        <div className="pt-3 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+        <div className="pt-3 border-t border-slate-800 flex flex-wrap justify-between items-center gap-2 text-xs text-slate-400">
           <span>Total registered accounts: <strong className="text-white">{users.length}</strong></span>
-          <span className="text-[11px] text-emerald-400">✓ Real-time user persistence active</span>
+          <div className="flex items-center space-x-3">
+            <a
+              href="/api/auth/export-users"
+              download
+              className="px-3 py-1.5 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[11px] font-bold transition-all cursor-pointer"
+            >
+              📥 Download User Directory (JSON)
+            </a>
+            <span className="text-[11px] text-emerald-400">✓ Real-time user persistence active</span>
+          </div>
         </div>
       </div>
     </div>

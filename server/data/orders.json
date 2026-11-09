@@ -1,5 +1,74 @@
 [
   {
+    "id": "ORD-373699",
+    "userEmail": "rekha@flouna.com",
+    "userName": "Rekha",
+    "items": [
+      {
+        "id": "zb_zb-104_zb-m-6",
+        "restaurantName": "Toscano Artisanal Pizzeria",
+        "dishName": "Spicy Peri Peri Margherita Pizza",
+        "category": "Pizza",
+        "provider": "ZestyBites",
+        "providerTag": "ZestyBites API",
+        "price": 345,
+        "originalPrice": 395,
+        "discountText": "15% OFF",
+        "rating": 4.6,
+        "rawRating": 4.6,
+        "reviewCount": 3400,
+        "deliveryTimeMinutes": 32,
+        "distanceKm": 2.9,
+        "isVeg": true,
+        "dietTag": "VEG",
+        "cuisine": [
+          "Italian",
+          "Pizza",
+          "Pastas"
+        ],
+        "location": "Koramangala",
+        "specialOffer": "15% OFF",
+        "hasIncompleteData": false,
+        "missingFields": [],
+        "rawProviderData": {
+          "item_id": "zb-m-6",
+          "dish_name": "Spicy Peri Peri Margherita Pizza",
+          "category": "Pizza",
+          "price": 395,
+          "is_veg": true,
+          "item_rating": 4.6
+        },
+        "isDeduplicated": false,
+        "duplicateCount": 1,
+        "crossPlatformDeals": null,
+        "isExactMatch": true,
+        "unmetConstraints": [],
+        "compositeScore": 85.1,
+        "scoreBreakdown": {
+          "qualityScore": 94,
+          "speedScore": 68,
+          "valueScore": 76,
+          "matchScore": 100,
+          "weightsApplied": {
+            "quality": 0.35,
+            "speed": 0.25,
+            "value": 0.2,
+            "match": 0.2
+          }
+        },
+        "quantity": 1
+      }
+    ],
+    "subtotal": 345,
+    "discount": 0,
+    "deliveryFee": 0,
+    "total": 345,
+    "deliveryAddress": "Flat 402, Green Glen Layout, Koramangala, Bengaluru",
+    "status": "Confirmed - Preparing in Kitchen",
+    "estimatedDeliveryTime": "25-30 mins",
+    "createdAt": "2026-11-09T17:12:53.699Z"
+  },
+  {
     "id": "ORD-851076",
     "userEmail": "rekha@flouna.com",
     "userName": "Rekha",
